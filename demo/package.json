@@ -1,0 +1,6 @@
+{
+  "name": "pathcheck-demo",
+  "private": true,
+  "type": "module",
+  "dependencies": { "playwright-core": "1.56.1" }
+}

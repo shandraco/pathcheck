@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PathCheck | Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1e7;--card:#fffdf8;--ink:#1b1a17;--soft:#5d574c;--line:#d9d0bf;--gold:#ffc72c;--ok:#1f7a4d;--no:#b3261e;--ask:#8a5a00}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box}html,body{margin:0;background:var(--paper);color:var(--ink);font:30px/1.45 "IBM Plex Sans",sans-serif}
+.s{width:1920px;height:1080px;padding:96px 120px;position:relative;page-break-after:always;overflow:hidden;background:var(--paper)}
+.s.dark{background:var(--ink);color:var(--paper)}
+.k{font:600 22px "IBM Plex Mono",monospace;letter-spacing:2px;text-transform:uppercase;color:var(--soft)}
+.dark .k{color:#b5ad9c}
+h1{font:800 120px/1 "Fraunces",serif;margin:20px 0 28px;letter-spacing:-2px}
+h1 span{background:var(--gold);color:var(--ink);padding:0 14px}
+h2{font:800 68px/1.08 "Fraunces",serif;margin:16px 0 40px;letter-spacing:-1px;max-width:1500px}
+.lead{font-size:40px;max-width:1450px;color:var(--soft)}.dark .lead{color:#d9d0bf}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.card{background:var(--card);border:2px solid var(--ink);border-radius:20px;padding:32px}
+.card h3{font:700 36px "Fraunces",serif;margin:0 0 12px}
+.big{font:800 96px/1 "Fraunces",serif}
+ul{margin:0;padding-left:34px}li{margin:10px 0}
+.foot{position:absolute;left:120px;right:120px;bottom:48px;display:flex;justify-content:space-between;font:20px "IBM Plex Mono",monospace;color:var(--soft)}
+.badge{display:inline-block;font:600 24px "IBM Plex Sans";padding:6px 18px;border-radius:999px;margin-right:12px}
+.eligible{background:#e3f3ea;color:var(--ok)}.blocked{background:#fbe5e3;color:var(--no)}.needs{background:#fff1cc;color:var(--ask)}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:20px}
+.node{background:var(--card);border:2px solid var(--ink);border-radius:16px;padding:22px;font-size:24px;min-height:250px}
+.node b{display:block;font:700 30px "Fraunces",serif;margin-bottom:8px}
+.loop{margin-top:28px;font-size:26px;border-left:8px solid var(--gold);padding:16px 24px;background:var(--card);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:25px}td,th{text-align:left;padding:14px 16px;border-bottom:2px solid var(--line);vertical-align:top}
+th{font:600 22px "IBM Plex Mono",monospace;text-transform:uppercase;color:var(--soft)}
+.shot{width:100%;border:2px solid var(--ink);border-radius:16px;display:block}
+code{font:24px "IBM Plex Mono",monospace;background:var(--card);padding:2px 8px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<section class="s dark">
+  <div class="k">Open Agent Hackathon 2026 · Track 02 · The Agent That Can Explain Why</div>
+  <h1 style="margin-top:220px">Path<span>Check</span></h1>
+  <p class="lead">Can I take this class? Straight answers from the university's own catalog, schedule and policies, with the proof attached. When the data can't settle it, a human advisor does.</p>
+  <div class="foot"><span>Team Aege · Shan Vithana</span><span>github.com/shandraco/pathcheck</span></div>
+</section>
+
+<section class="s">
+  <div class="k">1 · The problem and who it hurts</div>
+  <h2>Registration rules live in four places that don't talk to each other.</h2>
+  <div class="cols3">
+    <div class="card"><div class="big">4</div><h3>scattered sources</h3>Course catalog, class schedule, degree pages, policy pages. Students have to join them in their heads.</div>
+    <div class="card"><div class="big">300+</div><h3>students per advisor</h3>Advising appointments book out for weeks in registration season, right when the question is urgent.</div>
+    <div class="card"><div class="big">1</div><h3>online class, 3 credits</h3>The most an F-1 student can count toward full time at WSU. Get it wrong and the cost is visa status, not just a semester.</div>
+  </div>
+  <p class="lead" style="margin-top:44px">Who: undergraduates and graduate students, especially international, first-generation and transfer students who don't know whom to ask. Generic chatbots make it worse by answering confidently without checking.</p>
+</section>
+
+<section class="s">
+  <div class="k">2 · The solution</div>
+  <h2>Ask in plain words. Get a verdict per class, the reasons, and the source for each reason.</h2>
+  <div class="cols">
+    <div>
+      <p><span class="badge eligible">You can take it</span> prerequisites met, sections listed</p>
+      <p><span class="badge blocked">Not yet</span> exactly which course is missing, and the path to it</p>
+      <p><span class="badge needs">Check with your advisor</span> consent, standing or anything a transcript can't prove</p>
+      <ul style="margin-top:30px">
+        <li>Every reason has a source chip: catalog entry, schedule section or policy page, with the SQL query that found it.</li>
+        <li>Outdated pages are thrown out, not quoted.</li>
+        <li>Questions it can't settle become a short list to take to your advisor.</li>
+      </ul>
+    </div>
+    <img class="shot" src="out/shot-answer.png" alt="PathCheck answer screen">
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">3 · Agent workflow</div>
+  <h2>Five roles that check each other, not a straight pipeline.</h2>
+  <div class="flow">
+    <div class="node"><b>Planner</b>Reads the question: target classes, transcript, term, policy topics. Nemotron, fast lane.</div>
+    <div class="node"><b>Researcher</b>Runs SQL through Zetaris across 4 sources. Writes every row to the World Model with its query.</div>
+    <div class="node"><b>Prereq engine</b>Applies the catalog's prerequisite text as exact rules. No model, so no guessing.</div>
+    <div class="node"><b>Analyst</b>Drafts the answer in plain words, citing World Model evidence ids. Nemotron, deep lane.</div>
+    <div class="node"><b>Checker</b>Rejects uncited, missing, outdated or contradicting claims. Judge model checks policy claims.</div>
+  </div>
+  <div class="loop"><b>Loops and branches:</b> class blocked → Researcher fetches the missing prerequisites, two levels deep · no policy text → Planner re-plans with broader terms · dated page → archived · claim rejected → back to the Analyst (up to 3 rounds), and anything still wrong is removed before the student sees it.</div>
+</section>
+
+<section class="s">
+  <div class="k">4 · Technical stack</div>
+  <h2>Small, dependable, runs from a clean clone.</h2>
+  <table>
+    <tr><th>Layer</th><th>What</th></tr>
+    <tr><td>Data</td><td>Zetaris Lightning: 4 REST tables (<code>pathcheck.courses</code>, <code>sections</code>, <code>programs</code>, <code>policies</code>), queried over the Zetaris REST SQL API</td></tr>
+    <tr><td>Cognition</td><td>Meterless World Model engine: content-hash ids, append-only JSONL log, replay, provenance, agent attribution, context builder</td></tr>
+    <tr><td>Models</td><td>Meterless Nightshift (OpenAI-compatible, provider contract) serving NVIDIA Nemotron on three lanes: fast, deep, judge</td></tr>
+    <tr><td>App</td><td>Python standard library only; Server-Sent Events stream every agent step to the page; 10 unit tests</td></tr>
+    <tr><td>Fallback</td><td><code>SAMPLE_MODE=true</code>: SQLite copy of the same data and recorded model replies, so judges can run it with no services</td></tr>
+  </table>
+</section>
+
+<section class="s">
+  <div class="k">5 · How Zetaris and Meterless are used</div>
+  <h2>Zetaris is where the sources meet. Meterless is how the agents remember and think.</h2>
+  <div class="cols">
+    <div class="card"><h3>Zetaris: the data layer</h3><ul>
+      <li>Four separately published sources, registered as Lightning REST tables in one Lightning database</li>
+      <li>Every agent lookup is SQL sent to Zetaris; the trace shows the query, row count and time</li>
+      <li>Joins catalog, schedule, programs and policies without a pipeline per source</li></ul></div>
+    <div class="card"><h3>Meterless: engine and runtime</h3><ul>
+      <li><b>World Model engine</b>: shared, provenance-stamped state all five roles read and write; replayable from its log; tested</li>
+      <li><b>Nightshift</b>: primary AI provider through the Meterless provider contract; per-agent lanes</li>
+      <li><b>NVIDIA Nemotron</b> through Nightshift; the model id is logged for every request</li></ul></div>
+  </div>
+  <p class="loop">Every trace line names its source: <code>engine: zetaris</code> on each query, and the Nemotron model id on each Nightshift request.</p>
+</section>
+
+<section class="s dark">
+  <div class="k">6 · What is unique</div>
+  <h2 style="color:var(--paper)">The model is never allowed to overrule the catalog.</h2>
+  <div class="cols">
+    <ul class="lead">
+      <li>Rules and models split the work: deterministic prerequisite logic decides eligibility; Nemotron explains it and reads policy prose.</li>
+      <li>The Checker overrides a wrong verdict and tells the Analyst why.</li>
+    </ul>
+    <ul class="lead">
+      <li>Every sentence traces to a World Model record, its Zetaris query and its source URL.</li>
+      <li>Honest by design: outdated pages are archived, and unprovable conditions go to an advisor.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">7 · Product visuals</div>
+  <h2>Every reason opens its proof.</h2>
+  <div class="cols">
+    <img class="shot" src="out/shot-trace.png" alt="Live agent trace">
+    <img class="shot" src="out/shot-cite.png" alt="Evidence dialog with source and SQL">
+  </div>
+</section>
+
+<section class="s">
+  <div class="k">8 · Future enhancements</div>
+  <h2>From one question to a whole degree plan, for any university.</h2>
+  <div class="cols">
+    <ul>
+      <li>Upload an unofficial transcript and get a full degree audit with a semester-by-semester path</li>
+      <li>An advisor inbox of escalated questions, so humans spend time where judgment is needed</li>
+      <li>Answers in the student's own language</li>
+    </ul>
+    <ul>
+      <li>Any university: the same four tables come from standard catalog and schedule systems (Acalog, Banner)</li>
+      <li>Live schedule seats and waitlists through more Zetaris sources</li>
+      <li>H-MEM memory so the agent remembers a student's plan across a semester</li>
+    </ul>
+  </div>
+  <div class="foot"><span>PathCheck · Team Aege</span><span>github.com/shandraco/pathcheck</span></div>
+</section>
+
+</body>
+</html>

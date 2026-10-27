@@ -1,0 +1,297 @@
+{
+ "run_id": "run-20261027-141609-e938",
+ "question": "I finished MATH 242. Can I take MATH 243 and PHYS 313 in Fall 2026?",
+ "plan": {
+  "target_courses": [
+   "MATH 243",
+   "PHYS 313"
+  ],
+  "completed": [
+   "MATH 242"
+  ],
+  "in_progress": [],
+  "term": "Fall 2026",
+  "program": "",
+  "policy_topics": [],
+  "student_type": "unknown",
+  "intent": "check eligibility and rules for the courses asked about"
+ },
+ "verdicts": {
+  "MATH 243": {
+   "course": "MATH 243",
+   "status": "eligible",
+   "missing": [],
+   "satisfied": [
+    {
+     "any_of": [
+      "MATH 242"
+     ],
+     "met_by": [
+      "MATH 242"
+     ]
+    }
+   ],
+   "take_with": [],
+   "consent_route": [],
+   "conditions": [],
+   "rule_text": "MATH 242 with a C or better",
+   "offered_in_term": [
+    {
+     "evidence_id": "section:e75a66b1cfe3",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWRF",
+     "times": "10:30 AM - 11:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:b1f78ca4dc53",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MW",
+     "times": "08:30 AM - 10:45 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:54615efa4190",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWRF",
+     "times": "09:30 AM - 10:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:356e1bdb13dd",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWRF",
+     "times": "09:30 AM - 10:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:fc6a1288871f",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWRF",
+     "times": "11:30 AM - 12:20 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:494a4c51089d",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWRF",
+     "times": "10:30 AM - 11:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:8a3badbae0df",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "TWR",
+     "times": "05:30 PM - 06:55 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:9bb1426bd1e1",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "TBA",
+     "times": "TBA",
+     "modality": "online"
+    }
+   ]
+  },
+  "PHYS 313": {
+   "course": "PHYS 313",
+   "status": "eligible",
+   "missing": [],
+   "satisfied": [],
+   "take_with": [],
+   "consent_route": [],
+   "conditions": [],
+   "rule_text": "",
+   "offered_in_term": [
+    {
+     "evidence_id": "section:93bd7a0dd1a5",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "09:30 AM - 10:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:c72d194d7fd3",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "09:30 AM - 10:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:3858c6936b7e",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "09:30 AM - 10:20 AM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:408bdc046b7d",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "11:30 AM - 12:20 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:76c18043eef0",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "11:30 AM - 12:20 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:bb502ee98296",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MTWF",
+     "times": "12:30 PM - 01:20 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:56a12bad206d",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "MW",
+     "times": "05:00 PM - 06:40 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:e46e14ccae8f",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "R / T",
+     "times": "05:35 PM - 06:50 PM / 05:35 PM - 07:45 PM",
+     "modality": "in person"
+    },
+    {
+     "evidence_id": "section:18b04baf9659",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "T / MWF",
+     "times": "11:30 AM - 12:20 PM",
+     "modality": "in person"
+    }
+   ]
+  }
+ },
+ "answer": {
+  "summary": "MATH 243: eligible; PHYS 313: eligible",
+  "courses": [
+   {
+    "code": "MATH 243",
+    "status": "eligible",
+    "why": [
+     {
+      "claim": "The catalog prerequisite \"MATH 242 with a C or better\" is met by your completed courses.",
+      "evidence_ids": [
+       "course:04fb4975c817"
+      ],
+      "status": "supported",
+      "check": "evidence exists"
+     },
+     {
+      "claim": "8 section(s) are listed for Fall 2026, for example MTWRF 10:30 AM - 11:20 AM (in person).",
+      "evidence_ids": [
+       "section:e75a66b1cfe3",
+       "section:b1f78ca4dc53"
+      ],
+      "status": "supported",
+      "check": "evidence exists"
+     }
+    ],
+    "next_step": "You can register."
+   },
+   {
+    "code": "PHYS 313",
+    "status": "eligible",
+    "why": [
+     {
+      "claim": "9 section(s) are listed for Fall 2026, for example T / MWF 09:30 AM - 10:20 AM (in person).",
+      "evidence_ids": [
+       "section:93bd7a0dd1a5",
+       "section:c72d194d7fd3"
+      ],
+      "status": "supported",
+      "check": "evidence exists"
+     }
+    ],
+    "next_step": "You can register."
+   }
+  ],
+  "policy_notes": [],
+  "ask_advisor": []
+ },
+ "evidence": {
+  "section:b1f78ca4dc53": {
+   "kind": "section",
+   "label": "MATH 243",
+   "url": null,
+   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('MATH 242', 'MATH 243', 'PHYS 313')",
+   "engine": "sample-sqlite",
+   "excerpt": "Fall 2026  MW 08:30 AM - 10:45 AM in person"
+  },
+  "section:e75a66b1cfe3": {
+   "kind": "section",
+   "label": "MATH 243",
+   "url": null,
+   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('MATH 242', 'MATH 243', 'PHYS 313')",
+   "engine": "sample-sqlite",
+   "excerpt": "Fall 2026  MTWRF 10:30 AM - 11:20 AM in person"
+  },
+  "section:93bd7a0dd1a5": {
+   "kind": "section",
+   "label": "PHYS 313",
+   "url": null,
+   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('MATH 242', 'MATH 243', 'PHYS 313')",
+   "engine": "sample-sqlite",
+   "excerpt": "Fall 2026  T / MWF 09:30 AM - 10:20 AM in person"
+  },
+  "section:c72d194d7fd3": {
+   "kind": "section",
+   "label": "PHYS 313",
+   "url": null,
+   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('MATH 242', 'MATH 243', 'PHYS 313')",
+   "engine": "sample-sqlite",
+   "excerpt": "Fall 2026  T / MWF 09:30 AM - 10:20 AM in person"
+  },
+  "course:04fb4975c817": {
+   "kind": "course",
+   "label": "MATH 243",
+   "url": "https://catalog.wichita.edu/undergraduate/courses/math/",
+   "sql": "SELECT code, title, credits, level, prerequisites, corequisites, description, url FROM pathcheck.courses WHERE code IN ('MATH 242', 'MATH 243', 'PHYS 313')",
+   "engine": "sample-sqlite",
+   "excerpt": "MATH 242 with a C or better"
+  }
+ },
+ "models": {
+  "planner": "rule-based fallback",
+  "analyst": "rule-based fallback",
+  "checker": "rule-based fallback"
+ },
+ "data_engine": "sample-sqlite",
+ "llm": "sample",
+ "world": {
+  "entities": {
+   "course": 3,
+   "section": 52,
+   "finding": 2
+  },
+  "relationships": 54,
+  "events": 12,
+  "log": "run-20261027-141609-e938.world.jsonl"
+ },
+ "seconds": 0.0
+}

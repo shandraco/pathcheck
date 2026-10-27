@@ -1,0 +1,60 @@
+[system] start: I'm a senior in Computer Science. What do I need before CS 598 senior capstone, and is it offered in Fall 2026
+[planner] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[planner] plan: check eligibility and rules for the courses asked about
+[researcher] sql: look up the courses asked about
+[researcher] sql: check the class schedule
+[prereq_engine] verdict: CS 598: blocked
+[researcher] sql: fetch missing prerequisites (level 1)
+[researcher] sql: check the class schedule
+[researcher] sql: fetch missing prerequisites (level 2)
+[researcher] sql: check the class schedule
+[system] round: analysis round 1
+[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[analyst] draft: CS 598: blocked
+[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[checker] verdict: 1 problems found
+[checker] send_back: 1 claims sent back to the analyst
+[system] round: analysis round 2
+[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[analyst] draft: CS 598: blocked
+[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[checker] verdict: 1 problems found
+[checker] send_back: 1 claims sent back to the analyst
+[system] round: analysis round 3
+[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[analyst] draft: CS 598: blocked
+[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[checker] verdict: 1 problems found
+[system] done: answered in 0.0 s
+{
+ "summary": "CS 598: blocked",
+ "courses": [
+  {
+   "code": "CS 598",
+   "status": "blocked",
+   "why": [
+    {
+     "claim": "The catalog also requires: senior standing. A transcript cannot confirm this.",
+     "evidence_ids": [
+      "course:e6b1089d9c4d"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    },
+    {
+     "claim": "1 section(s) are listed for Fall 2026, for example F 09:30 AM - 12:15 PM (in person).",
+     "evidence_ids": [
+      "section:e583f58c3269"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    }
+   ],
+   "next_step": "Take the missing course(s) first."
+  }
+ ],
+ "policy_notes": [],
+ "ask_advisor": [
+  "senior standing"
+ ]
+}

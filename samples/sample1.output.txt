@@ -1,0 +1,98 @@
+[system] start: I finished CS 311 and MATH 322. I'm an F-1 student. Can I take CS 400 and CS 560 in Spring 2027, and can one o
+[planner] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[planner] plan: check eligibility and rules for the courses asked about
+[researcher] sql: look up the courses asked about
+[researcher] sql: check the class schedule
+[researcher] sql: search policy pages: F-1 online course
+[checker] reject_stale: ignored outdated page: Spring 2022 FAQs
+[researcher] sql: search policy pages: F-1 full course load
+[prereq_engine] verdict: CS 400: eligible
+[prereq_engine] verdict: CS 560: blocked
+[researcher] sql: fetch missing prerequisites (level 1)
+[researcher] sql: check the class schedule
+[researcher] sql: fetch missing prerequisites (level 2)
+[researcher] sql: check the class schedule
+[system] round: analysis round 1
+[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[analyst] draft: CS 400: eligible; CS 560: blocked
+[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[checker] verdict: 0 problems found
+[system] done: answered in 0.1 s
+{
+ "summary": "CS 400: eligible; CS 560: blocked",
+ "courses": [
+  {
+   "code": "CS 400",
+   "status": "eligible",
+   "why": [
+    {
+     "claim": "The catalog prerequisite \"CS 311 with a C- grade or better\" is met by your completed courses.",
+     "evidence_ids": [
+      "course:592b8476650f"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    },
+    {
+     "claim": "1 section(s) are listed for Spring 2027, for example MW 12:30 PM - 01:45 PM (in person).",
+     "evidence_ids": [
+      "section:5f8388996dd7"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    }
+   ],
+   "next_step": "You can register."
+  },
+  {
+   "code": "CS 560",
+   "status": "blocked",
+   "why": [
+    {
+     "claim": "The catalog lists the prerequisite as \"MATH 322 , CS 400 ; STAT 460 or IME 254\". Still missing: CS 400; STAT 460 or IME 254.",
+     "evidence_ids": [
+      "course:b9b952a13c35"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    },
+    {
+     "claim": "1 section(s) are listed for Spring 2027, for example TR 02:00 PM - 03:15 PM (hybrid).",
+     "evidence_ids": [
+      "section:806e53386c15"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    }
+   ],
+   "next_step": "Take the missing course(s) first."
+  }
+ ],
+ "policy_notes": [
+  {
+   "claim": "Relevant policy page: Getting Started in F-1 Status Tutorial",
+   "evidence_ids": [
+    "policy:e774e9e8f891"
+   ],
+   "status": "supported",
+   "check": "evidence exists"
+  },
+  {
+   "claim": "Relevant policy page: F-1 SEVIS Agreement",
+   "evidence_ids": [
+    "policy:760f8b754412"
+   ],
+   "status": "supported",
+   "check": "evidence exists"
+  },
+  {
+   "claim": "Relevant policy page: Pre-Departure Information",
+   "evidence_ids": [
+    "policy:804def2cd6c2"
+   ],
+   "status": "supported",
+   "check": "evidence exists"
+  }
+ ],
+ "ask_advisor": []
+}

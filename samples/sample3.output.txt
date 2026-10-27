@@ -1,0 +1,60 @@
+[system] start: I finished MATH 242. Can I take MATH 243 and PHYS 313 in Fall 2026?
+[planner] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[planner] plan: check eligibility and rules for the courses asked about
+[researcher] sql: look up the courses asked about
+[researcher] sql: check the class schedule
+[prereq_engine] verdict: MATH 243: eligible
+[prereq_engine] verdict: PHYS 313: eligible
+[system] round: analysis round 1
+[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[analyst] draft: MATH 243: eligible; PHYS 313: eligible
+[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
+[checker] verdict: 0 problems found
+[system] done: answered in 0.0 s
+{
+ "summary": "MATH 243: eligible; PHYS 313: eligible",
+ "courses": [
+  {
+   "code": "MATH 243",
+   "status": "eligible",
+   "why": [
+    {
+     "claim": "The catalog prerequisite \"MATH 242 with a C or better\" is met by your completed courses.",
+     "evidence_ids": [
+      "course:04fb4975c817"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    },
+    {
+     "claim": "8 section(s) are listed for Fall 2026, for example MTWRF 10:30 AM - 11:20 AM (in person).",
+     "evidence_ids": [
+      "section:e75a66b1cfe3",
+      "section:b1f78ca4dc53"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    }
+   ],
+   "next_step": "You can register."
+  },
+  {
+   "code": "PHYS 313",
+   "status": "eligible",
+   "why": [
+    {
+     "claim": "9 section(s) are listed for Fall 2026, for example T / MWF 09:30 AM - 10:20 AM (in person).",
+     "evidence_ids": [
+      "section:93bd7a0dd1a5",
+      "section:c72d194d7fd3"
+     ],
+     "status": "supported",
+     "check": "evidence exists"
+    }
+   ],
+   "next_step": "You can register."
+  }
+ ],
+ "policy_notes": [],
+ "ask_advisor": []
+}
