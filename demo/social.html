@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PathCheck social images</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1e7;--card:#fffdf8;--ink:#1b1a17;--soft:#5d574c;--line:#d9d0bf;--gold:#ffc72c;--ok:#1f7a4d;--okbg:#e3f3ea;--no:#b3261e;--nobg:#fbe5e3;--nv:#76b900}
+*{box-sizing:border-box}
+body{margin:0;background:#888;font-family:"IBM Plex Sans",sans-serif;color:var(--ink)}
+.art{position:relative;overflow:hidden;background:var(--paper);margin:40px}
+.chip{display:inline-block;font:500 15px "IBM Plex Mono",monospace;background:var(--paper);border:1.5px solid var(--line);border-radius:6px;padding:2px 8px;color:var(--soft)}
+.badge{display:inline-block;font:600 17px "IBM Plex Sans";padding:4px 14px;border-radius:999px}
+.ok{background:var(--okbg);color:var(--ok)}.no{background:var(--nobg);color:var(--no)}
+
+/* Cover 1200x627 */
+#cover{width:1200px;height:627px;padding:64px 64px 0}
+#cover h1{font:900 84px/0.96 "Fraunces",serif;letter-spacing:-2px;margin:0;width:500px}
+#cover .sub{font-size:23px;line-height:1.45;color:var(--soft);width:470px;margin:26px 0 0}
+#cover .mark{position:absolute;left:64px;bottom:44px;display:flex;align-items:center;gap:14px;font-size:19px;color:var(--soft)}
+#cover .mark b{font:800 30px "Fraunces",serif;color:var(--ink)}
+#cover .mark b span{background:var(--gold);padding:0 6px}
+.stack-cards{position:absolute;right:52px;top:70px;width:500px}
+.v{background:var(--card);border:2.5px solid var(--ink);border-radius:18px;padding:22px 24px;box-shadow:10px 10px 0 var(--ink)}
+.v + .v{margin-top:22px}
+.v h3{font:700 32px "Fraunces",serif;margin:0 0 10px;display:flex;align-items:center;gap:14px}
+.v p{margin:8px 0 0;font-size:18px;line-height:1.45}
+.v .why{border-left:4px solid var(--line);padding-left:12px}
+.v.back{transform:rotate(-2.2deg) translateX(-26px);opacity:.96}
+.goldbar{position:absolute;right:0;top:0;bottom:0;width:18px;background:var(--gold)}
+
+/* Infographic 1080x1350 */
+#info{width:1080px;height:1350px;padding:64px 64px 0}
+#info h2{font:900 64px/1 "Fraunces",serif;letter-spacing:-1.5px;margin:0}
+#info .lede{font-size:22px;line-height:1.45;color:var(--soft);margin:16px 0 0;max-width:820px}
+#info h4{font:700 26px "Fraunces",serif;margin:0 0 14px}
+.grid{display:grid;grid-template-columns:470px 1fr;gap:40px;margin-top:40px}
+svg text{font-family:"IBM Plex Sans",sans-serif}
+table{border-collapse:collapse;width:100%;font-size:17px}
+td{padding:11px 0;border-bottom:1.5px solid var(--line);vertical-align:top;line-height:1.4}
+td:first-child{width:118px;font-weight:600;padding-right:12px}
+.model{font:500 15px "IBM Plex Mono",monospace;color:var(--ink);background:#eaf5d3;border-radius:5px;padding:1px 6px;display:inline-block;margin-bottom:4px}
+.nomodel{font:500 15px "IBM Plex Mono",monospace;color:var(--soft)}
+.stack{margin-top:36px}
+.stack ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 28px}
+.stack li{font-size:17px;line-height:1.4;padding-left:18px;position:relative}
+.stack li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;background:var(--gold);border:1.5px solid var(--ink)}
+.stack b{display:block;font-size:18px}
+.foot{position:absolute;left:64px;right:64px;bottom:40px;display:flex;justify-content:space-between;align-items:center;font-size:18px;color:var(--soft)}
+.foot b{font:800 28px "Fraunces",serif;color:var(--ink)}
+.foot b span{background:var(--gold);padding:0 6px}
+</style>
+</head>
+<body>
+
+<section class="art" id="cover">
+  <h1>Can I take this class?</h1>
+  <p class="sub">An agent team that answers from the university's own catalog, schedule and policy pages, and shows the proof for every reason.</p>
+  <div class="stack-cards">
+    <div class="v back">
+      <h3>CS 400 <span class="badge ok">You can take it</span></h3>
+      <p class="why">CS 311 with a C- or better: met. <span class="chip">course: CS 400</span></p>
+    </div>
+    <div class="v">
+      <h3>CS 560 <span class="badge no">Not yet</span></h3>
+      <p class="why">Still missing CS 400, and STAT 460 or IME 254. <span class="chip">course: CS 560</span></p>
+      <p class="why">Only one fully online class, up to 3 credits, counts toward an F-1 full-time load. <span class="chip">policy: F-1 Status</span></p>
+    </div>
+  </div>
+  <div class="mark"><b>Path<span>Check</span></b> Built by Team Aege for the Open Agent Hackathon 2026</div>
+  <div class="goldbar"></div>
+</section>
+
+<section class="art" id="info">
+  <h2>How PathCheck checks itself</h2>
+  <p class="lede">Five roles that review each other's work. Rules decide who can take a class; NVIDIA Nemotron explains it and reads the policy pages; a checker removes anything it can't prove.</p>
+
+  <div class="grid">
+    <div>
+      <svg width="470" height="760" viewBox="0 0 470 760" role="img" aria-label="Agent workflow diagram">
+        <defs>
+          <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1b1a17"/></marker>
+          <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b3261e"/></marker>
+        </defs>
+        <g font-size="16" fill="#1b1a17">
+          <!-- question -->
+          <rect x="70" y="4" width="300" height="50" rx="25" fill="#ffc72c" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="35" text-anchor="middle" font-weight="600">Student's question</text>
+          <line x1="220" y1="54" x2="220" y2="84" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- planner -->
+          <rect x="70" y="86" width="300" height="70" rx="12" fill="#fffdf8" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="115" text-anchor="middle" font-weight="600" font-size="19">Planner</text>
+          <text x="220" y="139" text-anchor="middle" fill="#5d574c" font-size="14">classes, transcript, term, topics</text>
+          <line x1="220" y1="156" x2="220" y2="186" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- researcher -->
+          <rect x="70" y="188" width="300" height="70" rx="12" fill="#fffdf8" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="217" text-anchor="middle" font-weight="600" font-size="19">Researcher</text>
+          <text x="220" y="241" text-anchor="middle" fill="#5d574c" font-size="14">SQL across 4 sources via Zetaris</text>
+          <line x1="220" y1="258" x2="220" y2="288" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- world model side -->
+          <rect x="384" y="196" width="82" height="54" rx="8" fill="#f6f1e7" stroke="#1b1a17" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="425" y="219" text-anchor="middle" font-size="13" font-weight="600">World</text>
+          <text x="425" y="237" text-anchor="middle" font-size="13" font-weight="600">Model</text>
+          <line x1="370" y1="223" x2="382" y2="223" stroke="#1b1a17" stroke-width="1.5" marker-end="url(#a)"/>
+          <!-- prereq -->
+          <rect x="70" y="290" width="300" height="70" rx="12" fill="#fffdf8" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="319" text-anchor="middle" font-weight="600" font-size="19">Prerequisite engine</text>
+          <text x="220" y="343" text-anchor="middle" fill="#5d574c" font-size="14">exact catalog rules, no model</text>
+          <line x1="220" y1="360" x2="220" y2="390" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- branch: blocked -> researcher -->
+          <path d="M70 325 H30 V223 H66" fill="none" stroke="#b3261e" stroke-width="2" marker-end="url(#r)"/>
+          <text x="22" y="280" fill="#b3261e" font-size="13" transform="rotate(-90 22 280)" text-anchor="middle">blocked: find missing</text>
+          <!-- analyst -->
+          <rect x="70" y="392" width="300" height="70" rx="12" fill="#fffdf8" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="421" text-anchor="middle" font-weight="600" font-size="19">Analyst</text>
+          <text x="220" y="445" text-anchor="middle" fill="#5d574c" font-size="14">drafts the answer, cites evidence</text>
+          <line x1="220" y1="462" x2="220" y2="492" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- checker -->
+          <rect x="70" y="494" width="300" height="70" rx="12" fill="#fffdf8" stroke="#1b1a17" stroke-width="2"/>
+          <text x="220" y="523" text-anchor="middle" font-weight="600" font-size="19">Checker</text>
+          <text x="220" y="547" text-anchor="middle" fill="#5d574c" font-size="14">rules plus a judge model</text>
+          <!-- loop back -->
+          <path d="M370 529 H420 V427 H374" fill="none" stroke="#b3261e" stroke-width="2" marker-end="url(#r)"/>
+          <text x="440" y="478" fill="#b3261e" font-size="13" transform="rotate(90 440 478)" text-anchor="middle">rejected: revise (3x)</text>
+          <line x1="220" y1="564" x2="220" y2="594" stroke="#1b1a17" stroke-width="2" marker-end="url(#a)"/>
+          <!-- answer -->
+          <rect x="40" y="596" width="360" height="150" rx="14" fill="#1b1a17"/>
+          <text x="220" y="632" text-anchor="middle" fill="#f6f1e7" font-weight="600" font-size="19">Answer for the student</text>
+          <rect x="70" y="650" width="132" height="28" rx="14" fill="#e3f3ea"/><text x="136" y="669" text-anchor="middle" fill="#1f7a4d" font-size="14" font-weight="600">You can take it</text>
+          <rect x="212" y="650" width="78" height="28" rx="14" fill="#fbe5e3"/><text x="251" y="669" text-anchor="middle" fill="#b3261e" font-size="14" font-weight="600">Not yet</text>
+          <rect x="300" y="650" width="74" height="28" rx="14" fill="#fff1cc"/><text x="337" y="669" text-anchor="middle" fill="#8a5a00" font-size="14" font-weight="600">Advisor</text>
+          <text x="220" y="712" text-anchor="middle" fill="#d9d0bf" font-size="14">every reason links to its source and query</text>
+        </g>
+      </svg>
+    </div>
+
+    <div>
+      <h4>NVIDIA Nemotron, through Meterless Nightshift</h4>
+      <table>
+        <tr><td>Planner</td><td><span class="model">nemotron-3.5-bolt-e4b</span><br>Turns the question into a plan: target classes, completed courses, term, policy topics. Fast lane.</td></tr>
+        <tr><td>Analyst</td><td><span class="model">nemotron-3.5-bolt-e4b</span><br>Writes the answer in plain words and cites a record for every claim. Deep lane; Nightshift can route it to <span class="model">nemotron-3-ultra-550b-a55b</span>.</td></tr>
+        <tr><td>Checker</td><td><span class="model">nemotron-3.5-bolt-e4b</span><br>Judges whether each cited policy page really says what the claim says. Judge lane.</td></tr>
+        <tr><td>Prereq engine</td><td><span class="nomodel">no model</span><br>Applies the catalog's prerequisite rules exactly, so a model can never overrule them.</td></tr>
+      </table>
+
+      <div class="stack">
+        <h4>Built with</h4>
+        <ul>
+          <li><b>Zetaris</b>catalog, schedule, programs and policies as one SQL layer</li>
+          <li><b>Meterless World Model</b>shared, replayable memory with a source on every record</li>
+          <li><b>Meterless Nightshift</b>model provider with fast, deep and judge lanes</li>
+          <li><b>Python</b>standard library only, live trace over Server-Sent Events</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot"><b>Path<span>Check</span></b><span>github.com/shandraco/pathcheck</span></div>
+</section>
+
+</body>
+</html>
