@@ -70,6 +70,18 @@ Tests: `python3 tests/test_engine.py`
 - `samples/`: three sample questions with full outputs.
 - `logs/<run>.trace.jsonl`: every agent step, SQL query and model id. `logs/<run>.world.jsonl`: the World Model append log; `WorldModel.replay()` rebuilds the run's state from it.
 
+## Disclosure
+
+1. **Models through Nightshift:** NVIDIA Nemotron on three Meterless lanes. In our runs Nightshift routed the fast (Planner), deep (Analyst) and judge (Checker) lanes to `nvidia/nemotron-3.5-bolt-e4b`, and occasionally to `nvidia/nemotron-3-ultra-550b-a55b`. The exact model is logged on every request.
+2. **Agent framework:** none. The agent team, loops and checker are plain Python (standard library only).
+3. **Sponsor integration:** see "Sponsor technology" above.
+4. **AI coding tool:** Claude Code (Anthropic). All generated code was reviewed and tested by the team.
+5. **External tools and libraries:** Python standard library; `playwright-core`, macOS `say` and ffmpeg for the demo video and deck only.
+6. **Data:** a real public snapshot of Wichita State University pages (see below). No synthetic data.
+7. **Adapted open source:** none beyond the Meterless engine specifications and provider contract.
+8. **Known limitations:** the sample runs in `samples/` used live Nemotron through Nightshift with the local SQLite copy of the four sources (`SAMPLE_MODE=true LLM_LIVE=true`); the Zetaris path (`zetaris/register.sql`, `pathcheck/data.py`) is implemented to the Zetaris REST API but was not exercised end to end in this build. Small models sometimes return malformed JSON; the run then falls back to the rule-based answer for that step and logs it. The data is a snapshot, so live catalog pages win for anything binding.
+9. **Sample mode:** `SAMPLE_MODE=true` uses the local data copy and replays recorded Nightshift replies (`samples/replay.json`); prompts without a recording fall back to the rule-based planner, analyst and checker, and the trace says so. `LLM_LIVE=true` keeps local data but sends model calls to Nightshift.
+
 ## Data and pre-existing work
 
-The data is a public snapshot of Wichita State University's catalog, class schedule, program and policy pages, crawled before the hackathon by the author (declared as a pre-existing component). `scripts/build_data.py` turns it into the four source files in `data/`. All agent, engine, checker and app code was written during the build window.
+The data is a public snapshot of Wichita State University's catalog, class schedule, program and policy pages, crawled 22 September to 14 October 2026, before the build window, by the author for an earlier project (declared as a pre-existing component). `scripts/build_data.py` turns it into the four source files in `data/`. All agent, engine, checker and app code was written during the build window.
