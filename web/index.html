@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PathCheck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f1e7;--card:#fffdf8;--ink:#1b1a17;--soft:#5d574c;--line:#d9d0bf;--gold:#ffc72c;
+--ok:#1f7a4d;--okbg:#e3f3ea;--no:#b3261e;--nobg:#fbe5e3;--ask:#8a5a00;--askbg:#fff1cc}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--paper:#15140f;--card:#1e1c17;--ink:#f3eee2;--soft:#b5ad9c;--line:#3a362d;
+--okbg:#163526;--nobg:#3a1714;--askbg:#3a2c08;--ok:#6fd3a0;--no:#ff8f86;--ask:#ffcf5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 "IBM Plex Sans",system-ui,sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 80px}
+header{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:12px}
+h1{font:800 40px/1 "Fraunces",serif;margin:0;letter-spacing:-.5px}h1 span{background:var(--gold);color:#1b1a17;padding:0 6px}
+.tag{color:var(--soft);font-size:16px}
+.status{margin-left:auto;font:13px "IBM Plex Mono",monospace;color:var(--soft)}
+.status b{color:var(--ink)}
+.ask{margin:26px 0 8px;background:var(--card);border:2px solid var(--ink);border-radius:14px;padding:18px}
+.ask label{font:600 20px "Fraunces",serif;display:block;margin-bottom:8px}
+textarea{width:100%;min-height:96px;font:inherit;color:inherit;background:transparent;border:1px solid var(--line);border-radius:10px;padding:12px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+button.go{font:600 18px "IBM Plex Sans";background:var(--ink);color:var(--paper);border:0;border-radius:10px;padding:14px 26px;cursor:pointer;min-height:52px}
+button.go:disabled{opacity:.5}
+.chip{font-size:14px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:22px;margin-top:22px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+h2{font:700 22px "Fraunces",serif;margin:0 0 10px}
+.summary{font-size:19px;background:var(--card);border-left:6px solid var(--gold);padding:14px 16px;border-radius:8px;margin-bottom:16px}
+.course{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+.course h3{margin:0 0 8px;font:700 20px "Fraunces",serif;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.badge{font:600 14px "IBM Plex Sans";padding:4px 10px;border-radius:999px}
+.eligible{background:var(--okbg);color:var(--ok)}.blocked{background:var(--nobg);color:var(--no)}.needs_advisor,.not_found{background:var(--askbg);color:var(--ask)}
+.claim{margin:8px 0;padding-left:14px;border-left:2px solid var(--line)}
+.cite{font:12px "IBM Plex Mono",monospace;border:1px solid var(--line);background:transparent;color:var(--soft);border-radius:6px;padding:2px 6px;margin-left:4px;cursor:pointer}
+.cite:hover{color:var(--ink);border-color:var(--ink)}
+.next{margin-top:8px;font-weight:600}
+.advisor{background:var(--askbg);border-radius:12px;padding:14px 16px;margin-top:14px}
+.trace{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;max-height:640px;overflow:auto;font-size:14px}
+.ev{display:grid;grid-template-columns:96px 1fr;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line)}
+.who{font:600 12px "IBM Plex Mono",monospace;text-transform:uppercase;color:var(--soft)}
+.who.checker{color:var(--no)}.who.planner{color:#5b4bb7}.who.analyst{color:var(--ok)}.who.researcher{color:#0f6b8f}.who.prereq_engine{color:var(--ask)}
+code,pre{font:12px/1.45 "IBM Plex Mono",monospace;white-space:pre-wrap;word-break:break-word}
+.model{display:inline-block;font:12px "IBM Plex Mono";background:var(--gold);color:#1b1a17;border-radius:4px;padding:0 5px}
+dialog{max-width:680px;width:calc(100% - 32px);border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.4)}
+.muted{color:var(--soft);font-size:14px}
+.empty{color:var(--soft);padding:30px 0}
+a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Path<span>Check</span></h1>
+    <div class="tag">Can I take this class? Straight answers from the catalog, with the proof.</div>
+    <div class="status" id="status">checking…</div>
+  </header>
+
+  <section class="ask">
+    <label for="q">Ask about your classes</label>
+    <textarea id="q">I am an F-1 international student in computer science. I finished CS 311 and MATH 322. Can I take CS 400 and CS 560 in Spring 2027, and can one of them be online?</textarea>
+    <div class="row">
+      <button class="go" id="go">Check my path</button>
+      <button class="chip" data-q="I finished CS 211 and MATH 242. Can I take CS 311 and CS 581 in Fall 2026?">Two classes, fall</button>
+      <button class="chip" data-q="I passed CS 580 and I am taking PHIL 354 now. Can I take CS 598 in Spring 2027?">Senior capstone</button>
+      <button class="chip" data-q="I'm an international student. Can I take two online classes next spring and still be full time?">Online + visa</button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <main id="answer"><div class="empty">Your answer appears here. Every reason links to the catalog page, the class schedule or the policy it came from.</div></main>
+    <aside>
+      <h2>How we checked</h2>
+      <div class="muted" style="margin-bottom:8px">Agents plan, search the university's data through Zetaris, and check each other. Rejected claims never reach you.</div>
+      <div class="trace" id="trace"><div class="muted">Waiting for a question.</div></div>
+    </aside>
+  </div>
+</div>
+
+<dialog id="dlg"><div id="dlgBody"></div><div class="row"><button class="go" onclick="dlg.close()">Close</button></div></dialog>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const LABEL = {eligible:"You can take it", blocked:"Not yet", needs_advisor:"Check with your advisor", not_found:"Not in the catalog"};
+let EVIDENCE = {};
+
+fetch("/api/status").then(r => r.json()).then(s => {
+  const llm = s.sample_mode ? "sample replay" : s.llm;
+  $("#status").innerHTML = `data: <b>${esc(s.data)}</b> · AI: <b>Meterless Nightshift (${esc(llm)})</b>`;
+}).catch(() => $("#status").textContent = "status unavailable");
+
+document.querySelectorAll(".chip").forEach(c => c.onclick = () => { $("#q").value = c.dataset.q; run(); });
+$("#go").onclick = run;
+
+function line(ev) {
+  let d = esc(ev.detail || "");
+  if (ev.model) d += ` <span class="model">${esc(ev.model)}</span>`;
+  if (ev.sql) d += `<pre>${esc(ev.sql)}</pre><span class="muted">${esc(ev.engine)} · ${ev.rows} rows · ${ev.ms} ms</span>`;
+  if (ev.rejected && ev.rejected.length) d += "<ul>" + ev.rejected.map(r => `<li>${esc(r.claim)}: <b>${esc(r.reason)}</b></li>`).join("") + "</ul>";
+  const el = document.createElement("div"); el.className = "ev";
+  el.innerHTML = `<div class="who ${esc(ev.agent)}">${esc(ev.agent.replace("_"," "))}</div><div>${esc(ev.action.replace("_"," "))}: ${d}</div>`;
+  $("#trace").appendChild(el); $("#trace").scrollTop = 1e9;
+}
+
+function cites(ids) {
+  return (ids || []).map(id => EVIDENCE[id] ? `<button class="cite" data-id="${esc(id)}">${esc(EVIDENCE[id].kind)}: ${esc(String(EVIDENCE[id].label).slice(0,28))}</button>` : "").join("");
+}
+
+function render(r) {
+  EVIDENCE = r.evidence || {};
+  const a = r.answer || {};
+  let h = `<h2>Your answer</h2><div class="summary">${esc(a.summary)}</div>`;
+  for (const c of a.courses || []) {
+    h += `<div class="course"><h3>${esc(c.code)} <span class="badge ${esc(c.status)}">${LABEL[c.status] || esc(c.status)}</span></h3>`;
+    for (const w of c.why || []) h += `<div class="claim">${esc(w.claim)} ${cites(w.evidence_ids)}</div>`;
+    if (c.next_step) h += `<div class="next">Next: ${esc(c.next_step)}</div>`;
+    h += `</div>`;
+  }
+  if ((a.policy_notes || []).length) {
+    h += `<h2>Rules that apply to you</h2>`;
+    for (const w of a.policy_notes) h += `<div class="claim">${esc(w.claim)} ${cites(w.evidence_ids)}</div>`;
+  }
+  if ((a.ask_advisor || []).length) h += `<div class="advisor"><b>Ask your advisor about:</b><ul>${a.ask_advisor.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  h += `<p class="muted">Checked in ${r.seconds} s · data through ${esc(r.data_engine)} · models: ${Object.entries(r.models||{}).map(([k,v])=>`${esc(k)}: ${esc(v)}`).join(", ")} · run ${esc(r.run_id)}</p>`;
+  $("#answer").innerHTML = h;
+  document.querySelectorAll(".cite").forEach(b => b.onclick = () => {
+    const e = EVIDENCE[b.dataset.id];
+    $("#dlgBody").innerHTML = `<h2>${esc(e.label)}</h2><p class="muted">${esc(e.kind)} · from ${esc(e.engine)}</p>
+      <blockquote>${esc(e.excerpt)}</blockquote>${e.url ? `<p><a href="${esc(e.url)}" target="_blank" rel="noopener">Open the source page</a></p>` : ""}
+      <p class="muted">Query that found it:</p><pre>${esc(e.sql)}</pre>`;
+    $("#dlg").showModal();
+  });
+}
+
+function run() {
+  const q = $("#q").value.trim(); if (!q) return;
+  $("#go").disabled = true; $("#go").textContent = "Checking…";
+  $("#trace").innerHTML = ""; $("#answer").innerHTML = `<div class="empty">Working on it. Watch the agents on the right.</div>`;
+  const es = new EventSource("/api/run?q=" + encodeURIComponent(q));
+  es.onmessage = m => {
+    const ev = JSON.parse(m.data); line(ev);
+    if (ev.action === "done") { render(ev.result); finish(); }
+    if (ev.action === "error") { $("#answer").innerHTML = `<div class="advisor">Something went wrong: ${esc(ev.detail)}. Please try again, or ask your advisor.</div>`; finish(); }
+  };
+  es.onerror = () => finish();
+  function finish(){ es.close(); $("#go").disabled = false; $("#go").textContent = "Check my path"; }
+}
+</script>
+</body>
+</html>

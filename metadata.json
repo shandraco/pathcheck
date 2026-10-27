@@ -1,0 +1,13 @@
+{
+  "project": "PathCheck",
+  "track": "Track 02: The Agent That Can Explain Why",
+  "summary": "Agent team that answers student registration questions from the university catalog, schedule, programs and policies, with every reason linked to its source and unsettled questions escalated to an advisor.",
+  "sponsor_tech": {
+    "zetaris": "Data layer: four separate REST sources registered as Lightning REST tables in the pathcheck Lightning database; all agent SQL runs through the Zetaris REST API (pathcheck/data.py, zetaris/register.sql).",
+    "meterless_engines": ["World Model (pathcheck/world_model.py, tests/test_engine.py)"],
+    "meterless_nightshift": "Primary AI provider via the Meterless provider contract (pathcheck/llm.py); fast, deep and judge lanes.",
+    "nvidia": "Nemotron models served through Nightshift; model id recorded per agent request in logs and results.",
+    "cursor": "Not used; built with Claude Code."
+  },
+  "pre_existing": ["WSU public catalog/schedule/policy snapshot crawled before 22 Oct 2026 (data/)"]
+}
