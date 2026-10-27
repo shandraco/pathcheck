@@ -65,11 +65,11 @@ class Handler(SimpleHTTPRequestHandler):
         host = (self.headers.get("Host") or "").rsplit(":", 1)[0]
         if host not in LOCAL_HOSTS:
             return False
-        site = self.headers.get("Sec-Fetch-Site")
-        if site and site not in ("same-origin", "none"):
-            return False
-        origin = self.headers.get("Origin")
-        return not origin or urlparse(origin).hostname in LOCAL_HOSTS
+        # Fail closed: a browser request must prove it came from this page.
+        if self.headers.get("Sec-Fetch-Site") == "same-origin":
+            return True
+        origin = self.headers.get("Origin") or self.headers.get("Referer") or ""
+        return urlparse(origin).hostname in LOCAL_HOSTS
 
     def _stream(self, q):
         self.send_response(200)
