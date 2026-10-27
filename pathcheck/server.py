@@ -16,6 +16,8 @@ from .data import open_data
 from .llm import MeterlessClient
 
 WEB = config.ROOT / "web"
+LOCAL_HOSTS = {"127.0.0.1", "localhost"}
+RUN_SLOTS = threading.BoundedSemaphore(2)  # each run calls the model several times; cap concurrent runs
 
 
 class Handler(SimpleHTTPRequestHandler):
@@ -45,11 +47,29 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json({"llm": st["state"], "models": st["models"][:20], "data": engine, "data_ok": data_ok,
                                "sample_mode": config.SAMPLE_MODE})
         if u.path == "/api/run":
+            if not self._same_origin():
+                return self._json({"error": "cross-origin requests are not allowed"}, 403)
             q = (parse_qs(u.query).get("q") or [""])[0].strip()[:1500]
             if not q:
                 return self._json({"error": "empty question"}, 400)
-            return self._stream(q)
+            if not RUN_SLOTS.acquire(blocking=False):
+                return self._json({"error": "busy, try again in a moment"}, 429)
+            try:
+                return self._stream(q)
+            finally:
+                RUN_SLOTS.release()
         return super().do_GET()
+
+    def _same_origin(self) -> bool:
+        """Block other websites (and DNS rebinding) from starting model runs through the browser."""
+        host = (self.headers.get("Host") or "").rsplit(":", 1)[0]
+        if host not in LOCAL_HOSTS:
+            return False
+        site = self.headers.get("Sec-Fetch-Site")
+        if site and site not in ("same-origin", "none"):
+            return False
+        origin = self.headers.get("Origin")
+        return not origin or urlparse(origin).hostname in LOCAL_HOSTS
 
     def _stream(self, q):
         self.send_response(200)
