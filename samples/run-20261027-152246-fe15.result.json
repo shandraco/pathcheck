@@ -1,5 +1,5 @@
 {
- "run_id": "run-20261027-141608-2f02",
+ "run_id": "run-20261027-152246-fe15",
  "question": "I finished CS 311 and MATH 322. I'm an F-1 student. Can I take CS 400 and CS 560 in Spring 2027, and can one of them be online?",
  "plan": {
   "target_courses": [
@@ -14,11 +14,12 @@
   "term": "Spring 2027",
   "program": "",
   "policy_topics": [
-   "F-1 online course",
-   "F-1 full course load"
+   "F-1",
+   "full course load",
+   "online course"
   ],
   "student_type": "international",
-  "intent": "check eligibility and rules for the courses asked about"
+  "intent": "to determine course availability and enrollment options for Spring 2027"
  },
  "verdicts": {
   "CS 400": {
@@ -146,25 +147,25 @@
   ],
   "policy_notes": [
    {
+    "claim": "Relevant policy page: F-1 SEVIS Agreement",
+    "evidence_ids": [
+     "policy:61abef58bcb4"
+    ],
+    "status": "supported",
+    "check": "evidence exists"
+   },
+   {
+    "claim": "Relevant policy page: Getting Started in F-1 Status Tutorial",
+    "evidence_ids": [
+     "policy:e52415af77b4"
+    ],
+    "status": "supported",
+    "check": "evidence exists"
+   },
+   {
     "claim": "Relevant policy page: Getting Started in F-1 Status Tutorial",
     "evidence_ids": [
      "policy:e774e9e8f891"
-    ],
-    "status": "supported",
-    "check": "evidence exists"
-   },
-   {
-    "claim": "Relevant policy page: F-1 SEVIS Agreement",
-    "evidence_ids": [
-     "policy:760f8b754412"
-    ],
-    "status": "supported",
-    "check": "evidence exists"
-   },
-   {
-    "claim": "Relevant policy page: Pre-Departure Information",
-    "evidence_ids": [
-     "policy:804def2cd6c2"
     ],
     "status": "supported",
     "check": "evidence exists"
@@ -173,29 +174,21 @@
   "ask_advisor": []
  },
  "evidence": {
-  "section:806e53386c15": {
-   "kind": "section",
-   "label": "CS 560",
-   "url": null,
-   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('CS 311', 'CS 400', 'CS 560', 'MATH 322')",
+  "course:592b8476650f": {
+   "kind": "course",
+   "label": "CS 400",
+   "url": "https://catalog.wichita.edu/undergraduate/courses/cs/",
+   "sql": "SELECT code, title, credits, level, prerequisites, corequisites, description, url FROM pathcheck.courses WHERE code IN ('CS 311', 'CS 400', 'CS 560', 'MATH 322')",
    "engine": "sample-sqlite",
-   "excerpt": "Spring 2027  TR 02:00 PM - 03:15 PM hybrid"
+   "excerpt": "CS 311 with a C- grade or better"
   },
-  "policy:804def2cd6c2": {
+  "policy:e774e9e8f891": {
    "kind": "policy",
-   "label": "Pre-Departure Information",
-   "url": "https://www.wichita.edu/admissions/international/predeparture.php",
-   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' AND LOWER(text) LIKE '%online%' AND LOWER(text) LIKE '%course%' ORDER BY CASE WHEN LOWER(text) LIKE '%online course%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
+   "label": "Getting Started in F-1 Status Tutorial",
+   "url": "https://www.wichita.edu/admissions/international/current_students/gettingstartedinf1statustutorial/getstart5.php",
+   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' ORDER BY CASE WHEN LOWER(text) LIKE '%f-1%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
    "engine": "sample-sqlite",
-   "excerpt": "Take a Complimentary F-1 Visa Preparation Course .\u00a0\nDisclaimer: This complimentary course is offered by Catalyst GEM, an independent third-party\nprovider. Wichita State University does not endorse, administer, or assume responsibility\nfor the course content, services, or outcomes. Participation is voluntary, and all\ninquiries or concerns should be addressed directly to Catalyst GEM.\n\nMost student "
-  },
-  "policy:760f8b754412": {
-   "kind": "policy",
-   "label": "F-1 SEVIS Agreement",
-   "url": "https://www.wichita.edu/admissions/international/current_students/f1_sevis_agreement.php",
-   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' AND LOWER(text) LIKE '%online%' AND LOWER(text) LIKE '%course%' ORDER BY CASE WHEN LOWER(text) LIKE '%online course%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
-   "engine": "sample-sqlite",
-   "excerpt": "- You must maintain a valid passport at all times. It is your responsibility to renew\nyour passport at least six months before it expires.\n- You are required to report any change of address or legal change of name directly\nto the International Education office within 10 days. You can report a new address\nonline at www.wichita.edu/international under the \u201cCurrent Students\u201d tab.\n- You must complete "
+   "excerpt": "# Getting Started in F-1 Status Tutorial\n\n## Getting Started in F-1 Status Tutorial\n\nMaintaining Status\n\n- Keep your passport and I-20 valid. Your visa can expire and this does not affect your\nF-1 status.\n- Enroll in a full course load at WSU every Fall and Spring term (12 credits for undergraduate\nstudents, 9 credits for graduate students)\n- Only one 100% online course, up to 3 credits, counts to"
   },
   "section:5f8388996dd7": {
    "kind": "section",
@@ -205,13 +198,13 @@
    "engine": "sample-sqlite",
    "excerpt": "Spring 2027  MW 12:30 PM - 01:45 PM in person"
   },
-  "course:592b8476650f": {
-   "kind": "course",
-   "label": "CS 400",
-   "url": "https://catalog.wichita.edu/undergraduate/courses/cs/",
-   "sql": "SELECT code, title, credits, level, prerequisites, corequisites, description, url FROM pathcheck.courses WHERE code IN ('CS 311', 'CS 400', 'CS 560', 'MATH 322')",
+  "policy:e52415af77b4": {
+   "kind": "policy",
+   "label": "Getting Started in F-1 Status Tutorial",
+   "url": "https://www.wichita.edu/admissions/international/current_students/gettingstartedinf1statustutorial/getstart1.php",
+   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' ORDER BY CASE WHEN LOWER(text) LIKE '%f-1%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
    "engine": "sample-sqlite",
-   "excerpt": "CS 311 with a C- grade or better"
+   "excerpt": "# Getting Started in F-1 Status Tutorial\n\n# Wichita State University International Student Services (ISS)\n\n**Hours:** 8:00 a.m. to 5:00 p.m., Monday through Friday\n\n**Phone:** (316) 978-3232\n**Email:** iss@wichita.edu\n**Location:** Shocker Success Center, LL- 003\n\n**Staff:**\n\n**Tonya Baldwin**, Associate Director\n**Adriana Soares**, Senior International Student Advisor\n**Becky Tuttle**, Internatio"
   },
   "course:b9b952a13c35": {
    "kind": "course",
@@ -221,32 +214,40 @@
    "engine": "sample-sqlite",
    "excerpt": "MATH 322 , CS 400 ; STAT 460 or IME 254"
   },
-  "policy:e774e9e8f891": {
+  "policy:61abef58bcb4": {
    "kind": "policy",
-   "label": "Getting Started in F-1 Status Tutorial",
-   "url": "https://www.wichita.edu/admissions/international/current_students/gettingstartedinf1statustutorial/getstart5.php",
-   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' AND LOWER(text) LIKE '%online%' AND LOWER(text) LIKE '%course%' ORDER BY CASE WHEN LOWER(text) LIKE '%online course%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
+   "label": "F-1 SEVIS Agreement",
+   "url": "https://www.wichita.edu/admissions/international/current_students/f1_sevis_agreement.php",
+   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%f-1%' ORDER BY CASE WHEN LOWER(text) LIKE '%f-1%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%f-1%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
    "engine": "sample-sqlite",
-   "excerpt": "# Getting Started in F-1 Status Tutorial\n\n## Getting Started in F-1 Status Tutorial\n\nMaintaining Status\n\n- Keep your passport and I-20 valid. Your visa can expire and this does not affect your\nF-1 status.\n- Enroll in a full course load at WSU every Fall and Spring term (12 credits for undergraduate\nstudents, 9 credits for graduate students)\n- Only one 100% online course, up to 3 credits, counts to"
+   "excerpt": "# F-1 SEVIS Agreement\n\n# SEVIS Agreement for F-1 Students\n\n**United States Immigration Laws & Regulations:**\n**Responsibilities of F-1 International Students**\n\nIt is YOUR responsibility to maintain valid F-1 visa status while in the United States\nby doing the following:"
+  },
+  "section:806e53386c15": {
+   "kind": "section",
+   "label": "CS 560",
+   "url": null,
+   "sql": "SELECT term, code, section, days, times, modality, credits, crn FROM pathcheck.sections WHERE code IN ('CS 311', 'CS 400', 'CS 560', 'MATH 322')",
+   "engine": "sample-sqlite",
+   "excerpt": "Spring 2027  TR 02:00 PM - 03:15 PM hybrid"
   }
  },
  "models": {
-  "planner": "rule-based fallback",
+  "planner": "nvidia/nemotron-3.5-bolt-e4b",
   "analyst": "rule-based fallback",
   "checker": "rule-based fallback"
  },
  "data_engine": "sample-sqlite",
- "llm": "sample",
+ "llm": "online",
  "world": {
   "entities": {
    "course": 8,
    "section": 50,
-   "policy": 6,
+   "policy": 10,
    "finding": 2
   },
   "relationships": 52,
-  "events": 19,
-  "log": "run-20261027-141608-2f02.world.jsonl"
+  "events": 31,
+  "log": "run-20261027-152246-fe15.world.jsonl"
  },
- "seconds": 0.1
+ "seconds": 257.9
 }

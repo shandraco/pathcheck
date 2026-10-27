@@ -1,0 +1,121 @@
+{
+ "run_id": "run-20261027-152705-e8e3",
+ "question": "I'm a senior in Computer Science. What do I need before CS 598 senior capstone, and is it offered in Fall 2026?",
+ "plan": {
+  "target_courses": [
+   "CS 598"
+  ],
+  "completed": [
+   "CS 311"
+  ],
+  "in_progress": [],
+  "term": "Fall 2026",
+  "program": "Computer Science",
+  "policy_topics": [
+   "senior capstone",
+   "prerequisites",
+   "course offering"
+  ],
+  "student_type": "domestic",
+  "intent": "To determine the prerequisites for CS 598 and confirm its availability in Fall 2026."
+ },
+ "verdicts": {
+  "CS 598": {
+   "course": "CS 598",
+   "status": "blocked",
+   "missing": [
+    {
+     "any_of": [
+      "CS 580"
+     ],
+     "met_by": []
+    }
+   ],
+   "satisfied": [],
+   "take_with": [
+    {
+     "any_of": [
+      "PHIL 354",
+      "PHIL 385"
+     ],
+     "met_by": []
+    }
+   ],
+   "consent_route": [],
+   "conditions": [
+    "senior standing"
+   ],
+   "rule_text": "CS 580 and senior standing.; Pre- or corequisite(s): PHIL 354 or PHIL 385",
+   "offered_in_term": [
+    {
+     "evidence_id": "section:e583f58c3269",
+     "term": "Fall 2026",
+     "section": "",
+     "days": "F",
+     "times": "09:30 AM - 12:15 PM",
+     "modality": "in person"
+    }
+   ]
+  }
+ },
+ "answer": {
+  "summary": "CS 598 Senior Design Project I is offered in Fall 2026 but is currently blocked because you have not yet completed CS 580 (which requires CS 311, a course you have done) and you also need a pre- or corequisite philosophy course (PHIL 354 or PHIL 385). CS 580 is eligible for enrollment in Fall 2026.",
+  "courses": [
+   {
+    "code": "CS 580",
+    "status": "eligible",
+    "why": [],
+    "next_step": "Register for the Fall 2026 section (TR 12:30 PM - 01:45 PM, in person)."
+   },
+   {
+    "code": "CS 598",
+    "status": "blocked",
+    "why": [],
+    "next_step": "Complete CS 580 and a philosophy course (PHIL 354 or PHIL 385), then register for the Fall 2026 section (F 09:30 AM - 12:15 PM, in person)."
+   }
+  ],
+  "policy_notes": [
+   {
+    "claim": "The WSU Custom Schedule Search is a general search and is not connected to registration.",
+    "evidence_ids": [
+     "policy:f4834570f264"
+    ],
+    "status": "supported",
+    "check": "The text explicitly states that the WSU Custom Schedule Search is a general search not connected to registration."
+   }
+  ],
+  "ask_advisor": [
+   "Consult your academic advisor to confirm all prerequisites and plan your enrollment."
+  ]
+ },
+ "evidence": {
+  "policy:f4834570f264": {
+   "kind": "policy",
+   "label": "Schedule of Courses",
+   "url": "https://www.wichita.edu/services/registrar/schedule_of_courses.php",
+   "sql": "SELECT policy_id, title, url, text FROM pathcheck.policies WHERE LOWER(text) LIKE '%course%' AND LOWER(text) LIKE '%offering%' ORDER BY CASE WHEN LOWER(text) LIKE '%course offering%' THEN 0 ELSE 1 END, CASE WHEN LOWER(title) LIKE '%course%' THEN 0 ELSE 1 END, LENGTH(text) LIMIT 4",
+   "engine": "sample-sqlite",
+   "excerpt": "# Schedule of Courses\n\n## Two ways to search for courses\n\nNeed to find out what courses are being\u00a0offered at Wichita State in upcoming sessions?\n\u00a0We have two\u00a0tools to view course offerings.\n\n**NEW!**\u00a0Use the Banner Schedule Search\u00a0to find links for browsing, searching and viewing\nclass information.\n\nBanner Schedule Search\n\nThe WSU Custom Schedule Search allows you to narrow your course search with"
+  }
+ },
+ "models": {
+  "planner": "nvidia/nemotron-3.5-bolt-e4b",
+  "analyst": "nvidia/nemotron-3.5-bolt-e4b",
+  "checker": "nvidia/nemotron-3.5-bolt-e4b"
+ },
+ "data_engine": "sample-sqlite",
+ "llm": "online",
+ "world": {
+  "entities": {
+   "course": 3,
+   "section": 6,
+   "program": 3,
+   "policy": 9,
+   "finding": 1
+  },
+  "relationships": 7,
+  "events": 29,
+  "log": "run-20261027-152705-e8e3.world.jsonl"
+ },
+ "seconds": 317.8
+}

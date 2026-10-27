@@ -1,60 +1,60 @@
 [system] start: I'm a senior in Computer Science. What do I need before CS 598 senior capstone, and is it offered in Fall 2026
-[planner] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[planner] plan: check eligibility and rules for the courses asked about
+[planner] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[planner] plan: To determine the prerequisites for CS 598 and confirm its availability in Fall 2026.
 [researcher] sql: look up the courses asked about
 [researcher] sql: check the class schedule
+[researcher] sql: find degree program: Computer Science
+[researcher] sql: search policy pages: senior capstone
+[researcher] sql: search policy pages: prerequisites
+[researcher] sql: search policy pages: course offering
 [prereq_engine] verdict: CS 598: blocked
 [researcher] sql: fetch missing prerequisites (level 1)
 [researcher] sql: check the class schedule
-[researcher] sql: fetch missing prerequisites (level 2)
-[researcher] sql: check the class schedule
 [system] round: analysis round 1
-[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[analyst] draft: CS 598: blocked
-[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[checker] verdict: 1 problems found
-[checker] send_back: 1 claims sent back to the analyst
+[analyst] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[analyst] draft: CS 598, Senior Design Project I, is currently blocked because you have not completed the prerequisite CS 580, 
+[checker] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[checker] verdict: 2 problems found
+[checker] send_back: 2 claims sent back to the analyst
 [system] round: analysis round 2
-[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[analyst] draft: CS 598: blocked
-[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[checker] verdict: 1 problems found
-[checker] send_back: 1 claims sent back to the analyst
+[analyst] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[analyst] draft: CS 598 is currently blocked because you have not completed CS 580, which requires CS 311, a course you have co
+[checker] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[checker] verdict: 89 problems found
+[checker] send_back: 89 claims sent back to the analyst
 [system] round: analysis round 3
-[analyst] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[analyst] draft: CS 598: blocked
-[checker] model_fallback: no recorded reply for this prompt in SAMPLE_MODE  <rule-based fallback>
-[checker] verdict: 1 problems found
-[system] done: answered in 0.0 s
+[analyst] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[analyst] draft: CS 598 Senior Design Project I is offered in Fall 2026 but is currently blocked because you have not yet compl
+[checker] model_reply: nvidia/nemotron-3.5-bolt-e4b via nightshift  <nvidia/nemotron-3.5-bolt-e4b>
+[checker] verdict: 2 problems found
+[system] done: answered in 317.8 s
 {
- "summary": "CS 598: blocked",
+ "summary": "CS 598 Senior Design Project I is offered in Fall 2026 but is currently blocked because you have not yet completed CS 580 (which requires CS 311, a course you have done) and you also need a pre- or corequisite philosophy course (PHIL 354 or PHIL 385). CS 580 is eligible for enrollment in Fall 2026.",
  "courses": [
+  {
+   "code": "CS 580",
+   "status": "eligible",
+   "why": [],
+   "next_step": "Register for the Fall 2026 section (TR 12:30 PM - 01:45 PM, in person)."
+  },
   {
    "code": "CS 598",
    "status": "blocked",
-   "why": [
-    {
-     "claim": "The catalog also requires: senior standing. A transcript cannot confirm this.",
-     "evidence_ids": [
-      "course:e6b1089d9c4d"
-     ],
-     "status": "supported",
-     "check": "evidence exists"
-    },
-    {
-     "claim": "1 section(s) are listed for Fall 2026, for example F 09:30 AM - 12:15 PM (in person).",
-     "evidence_ids": [
-      "section:e583f58c3269"
-     ],
-     "status": "supported",
-     "check": "evidence exists"
-    }
-   ],
-   "next_step": "Take the missing course(s) first."
+   "why": [],
+   "next_step": "Complete CS 580 and a philosophy course (PHIL 354 or PHIL 385), then register for the Fall 2026 section (F 09:30 AM - 12:15 PM, in person)."
   }
  ],
- "policy_notes": [],
+ "policy_notes": [
+  {
+   "claim": "The WSU Custom Schedule Search is a general search and is not connected to registration.",
+   "evidence_ids": [
+    "policy:f4834570f264"
+   ],
+   "status": "supported",
+   "check": "The text explicitly states that the WSU Custom Schedule Search is a general search not connected to registration."
+  }
+ ],
  "ask_advisor": [
-  "senior standing"
+  "Consult your academic advisor to confirm all prerequisites and plan your enrollment."
  ]
 }

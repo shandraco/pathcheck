@@ -197,6 +197,12 @@ class Team:
 
     def check(self, answer, verdicts):
         rejected, judge = [], []
+        # models sometimes return a claim as bare text; keep it as an uncited claim so it is rejected, not crashed on
+        as_claim = lambda w: w if isinstance(w, dict) else {"claim": str(w), "evidence_ids": []}
+        answer["courses"] = [c for c in answer.get("courses", []) if isinstance(c, dict)]
+        for c in answer["courses"]:
+            c["why"] = [as_claim(w) for w in c.get("why", [])]
+        answer["policy_notes"] = [as_claim(w) for w in answer.get("policy_notes", [])]
         for c in answer.get("courses", []):
             code = norm(c.get("code", ""))
             engine = verdicts.get(code, {}).get("status")
@@ -227,8 +233,17 @@ class Team:
         self.emit("checker", "verdict", f"{len(rejected)} problems found", rejected=rejected)
         return rejected
 
+    def _resolve_id(self, eid):
+        """Models cite the engine's verdict (e.g. "engine_verdicts.CS 400"); that verdict comes from the course's catalog entry."""
+        eid = str(eid)
+        if eid in self.wm.entities or eid.split(":")[0] in ("course", "section", "policy", "program"):
+            return eid
+        m = CODE.search(eid)
+        cid = stable_id("course", f"{m.group(1)} {m.group(2)}") if m else None
+        return cid if cid in self.wm.entities else eid
+
     def _check_claim(self, w, rejected, judge, where):
-        ids = w.get("evidence_ids") or []
+        ids = w["evidence_ids"] = [self._resolve_id(e) for e in w.get("evidence_ids") or []]
         reason = None
         if not ids:
             reason = "cites no evidence"

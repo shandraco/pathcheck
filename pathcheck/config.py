@@ -28,6 +28,8 @@ def flag(name: str) -> bool:
 
 # SAMPLE_MODE: run with no Zetaris and no Nightshift (local SQLite + recorded model replies).
 SAMPLE_MODE = flag("SAMPLE_MODE")
+# LLM_LIVE: in SAMPLE_MODE, still send model requests to Nightshift (data stays on the local copy).
+LLM_LIVE = flag("LLM_LIVE")
 
 ZETARIS_REST_URL = env("ZETARIS_REST_URL", "http://localhost:8888/api/v1.0")
 ZETARIS_ORG_ID = env("ZETARIS_ORG_ID", "1")

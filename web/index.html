@@ -90,7 +90,7 @@ const LABEL = {eligible:"You can take it", blocked:"Not yet", needs_advisor:"Che
 let EVIDENCE = {};
 
 fetch("/api/status").then(r => r.json()).then(s => {
-  const llm = s.sample_mode ? "sample replay" : s.llm;
+  const llm = s.llm === "sample" ? "sample replay" : s.llm;
   $("#status").innerHTML = `data: <b>${esc(s.data)}</b> · AI: <b>Meterless Nightshift (${esc(llm)})</b>`;
 }).catch(() => $("#status").textContent = "status unavailable");
 
@@ -114,7 +114,7 @@ function cites(ids) {
 function render(r) {
   EVIDENCE = r.evidence || {};
   const a = r.answer || {};
-  let h = `<h2>Your answer</h2><div class="summary">${esc(a.summary)}</div>`;
+  let h = `<h2>Your answer</h2><div class="summary">${esc(String(a.summary ?? "").replace(/\s*\[(?:engine_verdicts|course|section|policy|program)[^\]]*\]/g, ""))}</div>`;
   for (const c of a.courses || []) {
     h += `<div class="course"><h3>${esc(c.code)} <span class="badge ${esc(c.status)}">${LABEL[c.status] || esc(c.status)}</span></h3>`;
     for (const w of c.why || []) h += `<div class="claim">${esc(w.claim)} ${cites(w.evidence_ids)}</div>`;

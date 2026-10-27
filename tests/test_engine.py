@@ -89,6 +89,20 @@ class CheckerTest(unittest.TestCase):
         self.assertIn("cites no evidence", reasons)
         self.assertIn("never looked up", reasons)
 
+    def test_checker_accepts_engine_verdict_citation(self):
+        from pathcheck.agents import Team
+        t = Team(sample_mode=True)
+        t.fetch_courses(["CS 560"], "test")
+        rejected = []
+        ok = {"claim": "CS 560 still has a missing prerequisite.", "evidence_ids": ["engine_verdicts.CS 560"]}
+        t._check_claim(ok, rejected, judge=[], where="course")
+        self.assertEqual(ok["evidence_ids"], [stable_id("course", "CS 560")])
+        self.assertEqual(rejected, [])
+        loose = {"courses": [{"code": "CS 560", "status": "blocked", "why": ["CS 560 is hard."]}], "policy_notes": ["x"]}
+        self.assertTrue(any(r["reason"] == "cites no evidence" for r in t.check(loose, {})))
+        bad = {"claim": "CS 560 is easy.", "evidence_ids": ["engine_verdicts.MATH 999"]}
+        t._check_claim(bad, rejected, judge=[], where="course")
+        self.assertIn("does not exist", rejected[0]["reason"])
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

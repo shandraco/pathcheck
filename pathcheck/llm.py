@@ -49,7 +49,7 @@ class MeterlessClient:
     def __init__(self, base_url=None, token=None, sample_mode=None, record=True):
         self.base = normalize_base_url(base_url or config.METERLESS_BASE_URL)
         self.token = token if token is not None else config.METERLESS_RUNTIME_TOKEN
-        self.sample_mode = config.SAMPLE_MODE if sample_mode is None else sample_mode
+        self.sample_mode = (config.SAMPLE_MODE and not config.LLM_LIVE) if sample_mode is None else sample_mode
         self.record = record
         self.replay = _load_replay()
 

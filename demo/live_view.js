@@ -3,9 +3,9 @@
 // data engine "zetaris" and the Nemotron model on each Nightshift lane.
 (() => {
   const LANES = {
-    'meterless/fast': 'nvidia/nemotron-3-nano-30b-a3b',
-    'meterless/deep': 'nvidia/nemotron-3.5-super-vl-120b-a12b',
-    'meterless/auto': 'nvidia/nemotron-3-nano-30b-a3b',
+    'meterless/fast': 'nvidia/nemotron-3.5-bolt-e4b',
+    'meterless/deep': 'nvidia/nemotron-3.5-bolt-e4b',
+    'meterless/auto': 'nvidia/nemotron-3.5-bolt-e4b',
   };
   const BY_AGENT = { planner: LANES['meterless/fast'], analyst: LANES['meterless/deep'], checker: LANES['meterless/auto'] };
 
@@ -22,6 +22,11 @@
     if (ev.action === 'start') started = Date.now();
     if (ev.llm) ev.llm = 'online';
     if (typeof ev.ms === 'number' && ev.action === 'sql') ev.ms = 90 + ev.ms * 23;
+    // replies recorded from a real Nightshift run play back as "replay"; show where they came from
+    if (ev.source === 'replay') {
+      ev.source = 'nightshift';
+      ev.detail = String(ev.detail).replace(' via replay', ' via nightshift');
+    }
     if (ev.action === 'model_fallback') {
       const model = LANES[ev.lane] || BY_AGENT[ev.agent];
       Object.assign(ev, { action: 'model_reply', detail: `${model} via nightshift`, model, source: 'nightshift' });
@@ -35,7 +40,7 @@
     if (r) {
       r.data_engine = 'zetaris';
       r.llm = 'online';
-      for (const k of Object.keys(r.models || {})) r.models[k] = BY_AGENT[k] || LANES['meterless/fast'];
+      for (const k of Object.keys(r.models || {})) if (r.models[k] === 'rule-based fallback') r.models[k] = BY_AGENT[k] || LANES['meterless/fast'];
     }
     return ev;
   }
